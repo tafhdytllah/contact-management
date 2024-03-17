@@ -7,8 +7,3 @@
 
 ## Project Starter
 - https://start.spring.io/
-- Spring Web MVC
-- Spring Data JPA
-- MySQL
-- Validation
-- Lombok
