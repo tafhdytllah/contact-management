@@ -13,8 +13,6 @@ CREATE TABLE users (
     UNIQUE (token)
 ) ENGINE InnoDB;
 
-DROP TABLE users;
-
 SELECT * FROM users;
 
 DESC users;

@@ -9,9 +9,8 @@ Request Body :
 ```json
 {
     "name" : "tafh dytllah",
-    "email" : "tafh@gmail.com",
-    "password" : "secretpassword123",
-    "password_confirm" : "secretpassword123"
+    "username" : "tafh@gmail.com",
+    "password" : "secretpassword123"
 }
 ```
 
@@ -39,7 +38,7 @@ Request Body :
 
 ```json
 {
-    "email" : "tafh@gmail.com",
+    "username" : "tafh@gmail.com",
     "password" : "secretpassword123",
 }
 ```
@@ -59,7 +58,7 @@ Response Body (Failed) 401 :
 
 ```json
 {
-    "errors" : "email or password wrong"
+    "errors" : "username or password wrong"
 }
 ```
 
@@ -76,7 +75,7 @@ Response Body (Success) 200 :
 ```json
 {
     "data" : {
-        "email" : "tafh@gmail.com",
+        "username" : "tafh@gmail.com",
         "name" : "taf hdytllah"
     }
 }
@@ -112,7 +111,7 @@ Response Body (Success) 200 :
 ```json
 {
     "data" : {
-        "email" : "tafh@gmail.com",
+        "username" : "tafh@gmail.com",
         "name" : "taf hdytllah"
     }
 }
