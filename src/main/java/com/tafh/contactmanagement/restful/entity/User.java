@@ -33,5 +33,5 @@ public class User {
     private Long tokenExpiredAt;
 
     @OneToMany(mappedBy = "user")
-    private  List<Contact> concatcs;
+    private  List<Contact> contacts;
 }

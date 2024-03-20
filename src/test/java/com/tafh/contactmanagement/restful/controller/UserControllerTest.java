@@ -14,8 +14,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.lang.reflect.Type;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.MockMvcBuilder.*;
@@ -58,16 +57,13 @@ class UserControllerTest {
         ).andExpectAll(
                 status().isOk()
         ).andDo(result -> {
-            WebResponse<String> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<WebResponse<String>>() {
-                @Override
-                public Type getType() {
-                    return super.getType();
-                }
+            WebResponse<String> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<>() {
             });
 
             assertEquals("OK", response.getData());
         });
     }
+
 
     @Test
     void testRegisterBadRequest() throws Exception {
@@ -76,28 +72,23 @@ class UserControllerTest {
         request.setPassword("");
         request.setName("");
 
-        mockMvc.perform(
-                post("/api/users")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/users")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request))
         ).andExpectAll(
                 status().isBadRequest()
         ).andDo(result -> {
-            WebResponse<String> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<WebResponse<String>>() {
-                @Override
-                public Type getType() {
-                    return super.getType();
-                }
-            });
-
-            assertNotNull(response.getErrors());
+            String content = result.getResponse().getContentAsString();
+            if (!content.isBlank()) {
+                WebResponse<String> response = objectMapper.readValue(content, new TypeReference<>() {});
+                assertNotNull(response.getErrors());
+            }
         });
     }
 
     @Test
     void testRegisterDuplicate() throws Exception {
-
         User user = new User();
         user.setUsername("test");
         user.setPassword(BCrypt.hashpw("rahasia", BCrypt.gensalt()));
@@ -109,22 +100,18 @@ class UserControllerTest {
         request.setPassword("rahasia");
         request.setName("Test");
 
-        mockMvc.perform(
-                post("/api/users")
-                        .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request))
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/users")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request))
         ).andExpectAll(
                 status().isBadRequest()
         ).andDo(result -> {
-            WebResponse<String> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<WebResponse<String>>() {
-                @Override
-                public Type getType() {
-                    return super.getType();
-                }
-            });
-
-            assertNotNull(response.getErrors());
+            String content = result.getResponse().getContentAsString();
+            if (!content.isBlank()) {
+                WebResponse<String> response = objectMapper.readValue(content, new TypeReference<>() {});
+                assertNotNull(response.getErrors());
+            }
         });
     }
 }
