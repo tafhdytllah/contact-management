@@ -1,5 +1,7 @@
 package com.tafh.contactmanagement.restful.model;
 
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,9 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class WebResponse<T> {
-    
-    private T data;
+public class TokenResponse {
 
-    private String errors;
+    private String token;
+
+    @JsonProperty("expired_at")
+    private Long expiredAt;
 }

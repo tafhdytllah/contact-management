@@ -80,10 +80,8 @@ class UserControllerTest {
                 status().isBadRequest()
         ).andDo(result -> {
             String content = result.getResponse().getContentAsString();
-            if (!content.isBlank()) {
-                WebResponse<String> response = objectMapper.readValue(content, new TypeReference<>() {});
-                assertNotNull(response.getErrors());
-            }
+            WebResponse<String> response = objectMapper.readValue(content, new TypeReference<>() {});
+            assertNotNull(response.getErrors());
         });
     }
 
@@ -108,10 +106,8 @@ class UserControllerTest {
                 status().isBadRequest()
         ).andDo(result -> {
             String content = result.getResponse().getContentAsString();
-            if (!content.isBlank()) {
-                WebResponse<String> response = objectMapper.readValue(content, new TypeReference<>() {});
-                assertNotNull(response.getErrors());
-            }
+            WebResponse<String> response = objectMapper.readValue(content, new TypeReference<>() {});
+            assertNotNull(response.getErrors());
         });
     }
 }

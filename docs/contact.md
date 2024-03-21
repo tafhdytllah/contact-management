@@ -11,7 +11,7 @@ Request Body :
 
 ```json
 {
-    "firt_name" : "Taf",
+    "first_name" : "Taf",
     "last_name" : "hdytllah",
     "email" : "tafh@gmail.com",
     "phone" : "081918811"
@@ -24,7 +24,7 @@ Response Body (Success) 200 :
 {
     "data" : {
         "id" : "random-string",
-        "firt_name" : "Taf",
+        "first_name" : "Taf",
         "last_name" : "hdytllah",
         "email" : "tafh@gmail.com",
         "phone" : "081918811"
@@ -61,7 +61,7 @@ Response Body (Success) 200 :
 {
     "data" : {
         "id" : "random-string",
-        "firt_name" : "Taf",
+        "first_name" : "Taf",
         "last_name" : "hdytllah",
         "email" : "tafh@gmail.com",
         "phone" : "081918811"
@@ -96,7 +96,7 @@ Request Body :
 
 ```json
 {
-    "firt_name" : "Taf",
+    "first_name" : "Taf",
     "last_name" : "hdytllah",
     "email" : "tafh@gmail.com",
     "phone" : "081918811"
@@ -109,7 +109,7 @@ Response Body (Success) 200 :
 {
     "data" : {
         "id" : "random-string",
-        "firt_name" : "Taf",
+        "first_name" : "Taf",
         "last_name" : "hdytllah",
         "email" : "tafh@gmail.com",
         "phone" : "081918811"
@@ -157,18 +157,18 @@ Response Body (Success) 200 :
     "data" : [
         {
             "id" : "random string",
-            "firt_name" : "Taf",
+            "first_name" : "Taf",
             "last_name" : "hdytllah",
             "email" : "tafh@gmail.com",
             "phone" : "081918811"
         },
         {
             "id" : "random string",
-            "firt_name" : "Taf",
+            "first_name" : "Taf",
             "last_name" : "hdytllah",
             "email" : "tafh@gmail.com",
             "phone" : "081918811"
-        },
+        }
     ],
     "paging" : {
         "current_page" : 0,
