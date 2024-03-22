@@ -1,6 +1,7 @@
 package com.tafh.contactmanagement.restful.service;
 
 import com.tafh.contactmanagement.restful.entity.User;
+import com.tafh.contactmanagement.restful.model.UserResponse;
 import com.tafh.contactmanagement.restful.security.BCrypt;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -39,5 +40,12 @@ public class UserService {
         user.setName(request.getName());
 
         userRepository.save(user);
+    }
+
+    public UserResponse get(User user) {
+        return UserResponse.builder()
+                .username(user.getUsername())
+                .name(user.getName())
+                .build();
     }
 }
