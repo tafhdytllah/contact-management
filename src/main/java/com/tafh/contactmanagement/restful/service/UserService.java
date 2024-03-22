@@ -53,6 +53,7 @@ public class UserService {
                 .build();
     }
 
+    @Transactional
     public UserResponse update(User user, UpdateUserRequest request) {
         validationService.validate(request);
 
