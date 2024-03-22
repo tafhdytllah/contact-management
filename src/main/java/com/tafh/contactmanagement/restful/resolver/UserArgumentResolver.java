@@ -1,7 +1,5 @@
 package com.tafh.contactmanagement.restful.resolver;
 
-import com.tafh.contactmanagement.restful.entity.User;
-import com.tafh.contactmanagement.restful.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +11,8 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.server.ResponseStatusException;
+import com.tafh.contactmanagement.restful.entity.User;
+import com.tafh.contactmanagement.restful.repository.UserRepository;
 
 @Component
 @Slf4j
@@ -37,9 +37,10 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
         User user = userRepository.findFirstByToken(token)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Unauthorized"));
+
         log.info("USER {}", user);
         if (user.getTokenExpiredAt() < System.currentTimeMillis()) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Token is expired");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Expired token");
         }
 
         return user;

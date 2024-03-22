@@ -1,16 +1,14 @@
 package com.tafh.contactmanagement.restful.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 import com.tafh.contactmanagement.restful.entity.User;
 import com.tafh.contactmanagement.restful.model.RegisterUserRequest;
 import com.tafh.contactmanagement.restful.model.UpdateUserRequest;
 import com.tafh.contactmanagement.restful.model.UserResponse;
 import com.tafh.contactmanagement.restful.model.WebResponse;
 import com.tafh.contactmanagement.restful.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
-
-import javax.print.attribute.standard.Media;
 
 @RestController
 public class UserController {
@@ -25,11 +23,8 @@ public class UserController {
     )
     public WebResponse<String> register(@RequestBody RegisterUserRequest request) {
         userService.register(request);
-        return WebResponse.<String>builder()
-                .data("OK")
-                .build();
+        return WebResponse.<String>builder().data("OK").build();
     }
-
 
     @GetMapping(
             path = "/api/users/current",
@@ -37,9 +32,7 @@ public class UserController {
     )
     public WebResponse<UserResponse> get(User user) {
         UserResponse userResponse = userService.get(user);
-        return WebResponse.<UserResponse>builder()
-                .data(userResponse)
-                .build();
+        return WebResponse.<UserResponse>builder().data(userResponse).build();
     }
 
     @PatchMapping(
@@ -49,11 +42,6 @@ public class UserController {
     )
     public WebResponse<UserResponse> update(User user, @RequestBody UpdateUserRequest request) {
         UserResponse userResponse = userService.update(user, request);
-
-        return WebResponse.<UserResponse>builder()
-                .data(userResponse)
-                .build();
+        return WebResponse.<UserResponse>builder().data(userResponse).build();
     }
-
-
 }

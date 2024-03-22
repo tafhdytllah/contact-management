@@ -26,14 +26,12 @@ public class AuthService {
     public TokenResponse login(LoginUserRequest request) {
         validationService.validate(request);
 
-        // find user by id
         User user = userRepository.findById(request.getUsername())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Username or password wrong"));
 
-        // compare password
         if (BCrypt.checkpw(request.getPassword(), user.getPassword())) {
             user.setToken(UUID.randomUUID().toString());
-            user.setTokenExpiredAt(next30days());
+            user.setTokenExpiredAt(next30Days());
             userRepository.save(user);
 
             return TokenResponse.builder()
@@ -43,11 +41,10 @@ public class AuthService {
         } else {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Username or password wrong");
         }
-
     }
 
-    private long next30days() {
-        return System.currentTimeMillis() + (1000 * 60 * 24 * 30);
+    private Long next30Days() {
+        return System.currentTimeMillis() + (1000 * 60 * 60 * 24 * 30);
     }
 
     @Transactional

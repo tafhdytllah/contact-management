@@ -1,20 +1,20 @@
 package com.tafh.contactmanagement.restful.service;
 
-import com.tafh.contactmanagement.restful.entity.User;
-import com.tafh.contactmanagement.restful.model.UpdateUserRequest;
-import com.tafh.contactmanagement.restful.model.UserResponse;
-import com.tafh.contactmanagement.restful.security.BCrypt;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Validator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import com.tafh.contactmanagement.restful.model.RegisterUserRequest;
-import com.tafh.contactmanagement.restful.repository.UserRepository;
-import jakarta.validation.Validator;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+import com.tafh.contactmanagement.restful.entity.User;
+import com.tafh.contactmanagement.restful.model.RegisterUserRequest;
+import com.tafh.contactmanagement.restful.model.UpdateUserRequest;
+import com.tafh.contactmanagement.restful.model.UserResponse;
+import com.tafh.contactmanagement.restful.repository.UserRepository;
+import com.tafh.contactmanagement.restful.security.BCrypt;
 
 import java.util.Objects;
 import java.util.Set;
@@ -64,7 +64,7 @@ public class UserService {
         }
 
         if (Objects.nonNull(request.getPassword())) {
-            user.setPassword(request.getPassword());
+            user.setPassword(BCrypt.hashpw(request.getPassword(), BCrypt.gensalt()));
         }
 
         userRepository.save(user);

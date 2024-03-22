@@ -1,17 +1,16 @@
 package com.tafh.contactmanagement.restful.controller;
 
-import com.tafh.contactmanagement.restful.entity.User;
-import com.tafh.contactmanagement.restful.model.LoginUserRequest;
-import com.tafh.contactmanagement.restful.model.TokenResponse;
-import com.tafh.contactmanagement.restful.model.WebResponse;
-import com.tafh.contactmanagement.restful.service.AuthService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import com.tafh.contactmanagement.restful.entity.User;
+import com.tafh.contactmanagement.restful.model.LoginUserRequest;
+import com.tafh.contactmanagement.restful.model.TokenResponse;
+import com.tafh.contactmanagement.restful.model.WebResponse;
+import com.tafh.contactmanagement.restful.service.AuthService;
 
 @RestController
 public class AuthController {
@@ -26,9 +25,7 @@ public class AuthController {
     )
     public WebResponse<TokenResponse> login(@RequestBody LoginUserRequest request) {
         TokenResponse tokenResponse = authService.login(request);
-        return WebResponse.<TokenResponse>builder()
-                .data(tokenResponse)
-                .build();
+        return WebResponse.<TokenResponse>builder().data(tokenResponse).build();
     }
 
     @DeleteMapping(
