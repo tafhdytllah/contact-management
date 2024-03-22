@@ -223,4 +223,51 @@ class ContactControllerTest {
             assertTrue(contactRepository.existsById(response.getData().getId()));
         });
     }
+
+    @Test
+    void deleteContactNotFound() throws Exception {
+
+        mockMvc.perform(
+                delete("/api/contacts/123")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("X-API-TOKEN", "test")
+        ).andExpectAll(
+                status().isNotFound()
+        ).andDo(result -> {
+            WebResponse<String> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<WebResponse<String>>() {
+            });
+
+            assertNotNull(response.getErrors());
+        });
+    }
+
+    @Test
+    void deleteContactSuccess() throws Exception {
+        User user = userRepository.findById("test").orElseThrow();
+
+        Contact contact = new Contact();
+        contact.setId(UUID.randomUUID().toString());
+        contact.setFirstName("Top");
+        contact.setLastName("Last");
+        contact.setEmail("top@example");
+        contact.setPhone("0813242525");
+        contact.setUser(user);
+        contactRepository.save(contact);
+
+        mockMvc.perform(
+                delete("/api/contacts/" + contact.getId())
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("X-API-TOKEN", "test")
+        ).andExpectAll(
+                status().isOk()
+        ).andDo(result -> {
+            WebResponse<String> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<WebResponse<String>>() {
+            });
+
+            assertNull(response.getErrors());
+            assertEquals("OK", response.getData());
+        });
+    }
 }
