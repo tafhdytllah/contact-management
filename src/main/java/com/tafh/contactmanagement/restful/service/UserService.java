@@ -1,10 +1,12 @@
 package com.tafh.contactmanagement.restful.service;
 
 import com.tafh.contactmanagement.restful.entity.User;
+import com.tafh.contactmanagement.restful.model.UpdateUserRequest;
 import com.tafh.contactmanagement.restful.model.UserResponse;
 import com.tafh.contactmanagement.restful.security.BCrypt;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,9 +16,11 @@ import jakarta.validation.Validator;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Objects;
 import java.util.Set;
 
 @Service
+@Slf4j
 public class UserService {
     
     @Autowired
@@ -46,6 +50,27 @@ public class UserService {
         return UserResponse.builder()
                 .username(user.getUsername())
                 .name(user.getName())
+                .build();
+    }
+
+    public UserResponse update(User user, UpdateUserRequest request) {
+        validationService.validate(request);
+
+        log.info("REQUEST : {}", request);
+
+        if (Objects.nonNull(request.getName())) {
+            user.setName(request.getName());
+        }
+
+        if (Objects.nonNull(request.getPassword())) {
+            user.setPassword(request.getPassword());
+        }
+
+        userRepository.save(user);
+
+        return UserResponse.builder()
+                .name(user.getName())
+                .username(user.getUsername())
                 .build();
     }
 }

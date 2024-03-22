@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tafh.contactmanagement.restful.entity.User;
 import com.tafh.contactmanagement.restful.model.RegisterUserRequest;
+import com.tafh.contactmanagement.restful.model.UpdateUserRequest;
 import com.tafh.contactmanagement.restful.model.UserResponse;
 import com.tafh.contactmanagement.restful.model.WebResponse;
 import com.tafh.contactmanagement.restful.repository.UserRepository;
@@ -188,6 +189,62 @@ class UserControllerTest {
             assertNull(response.getErrors());
             assertEquals("test", response.getData().getUsername());
             assertEquals("Test", response.getData().getName());
+        });
+    }
+
+    @Test
+    void updateuserUnauthorized() throws Exception {
+        UpdateUserRequest request = new UpdateUserRequest();
+
+        mockMvc.perform(
+                patch("/api/users/current")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request))
+        ).andExpectAll(
+                status().isUnauthorized()
+        ).andDo(result -> {
+            String content = result.getResponse().getContentAsString();
+            WebResponse<String> response = objectMapper.readValue(content, new TypeReference<>() {});
+
+            assertNotNull(response.getErrors());
+        });
+    }
+
+
+    @Test
+    void updateuserSuccess() throws Exception {
+        User user = new User();
+        user.setUsername("test");
+        user.setPassword(BCrypt.hashpw("rahasia", BCrypt.gensalt()));
+        user.setName("Test");
+        user.setToken("test");
+        user.setTokenExpiredAt(System.currentTimeMillis() + 10000000000L);
+        userRepository.save(user);
+
+        UpdateUserRequest request = new UpdateUserRequest();
+        request.setName("Top");
+        request.setPassword("top12345");
+
+        mockMvc.perform(
+                patch("/api/users/current")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request))
+                        .header("X-API-TOKEn", "test")
+        ).andExpectAll(
+                status().isOk()
+        ).andDo(result -> {
+            String content = result.getResponse().getContentAsString();
+            WebResponse<UserResponse> response = objectMapper.readValue(content, new TypeReference<>() {});
+
+            assertNull(response.getErrors());
+            assertEquals("Top", response.getData().getName());
+            assertEquals("test", response.getData().getUsername());
+
+            User userDb = userRepository.findById("test").orElse(null);
+            assertNotNull(userDb);
+            assertTrue(BCrypt.checkpw("top12345", userDb.getPassword()));
         });
     }
 }
