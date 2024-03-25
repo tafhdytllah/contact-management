@@ -1,4 +1,5 @@
 -- Active: 1710666278436@@127.0.0.1@3306
+
 CREATE DATABASE spring_restful;
 
 USE spring_restful;
@@ -47,3 +48,9 @@ CREATE TABLE addresses(
 SELECT * FROM addresses;
 
 DESC addresses;
+
+DELETE FROM addresses;
+
+DELETE FROM contacts;
+
+DELETE FROM users;

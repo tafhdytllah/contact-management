@@ -1,5 +1,7 @@
 package com.tafh.contactmanagement.restful.controller;
 
+
+
 import com.tafh.contactmanagement.restful.entity.User;
 import com.tafh.contactmanagement.restful.model.AddressResponse;
 import com.tafh.contactmanagement.restful.model.CreateAddressRequest;
@@ -9,6 +11,9 @@ import com.tafh.contactmanagement.restful.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import javax.print.attribute.standard.Media;
+import java.util.List;
 
 @RestController
 public class AddressController {
@@ -60,4 +65,26 @@ public class AddressController {
 
         return WebResponse.<AddressResponse>builder().data(response).build();
     }
+
+   @DeleteMapping(
+           path = "/api/contacts/{contact_id}/addresses/{address_id}",
+           produces = MediaType.APPLICATION_JSON_VALUE
+   )
+   public WebResponse<String> remove(User user,
+                                     @PathVariable("contact_id") String contactId,
+                                     @PathVariable("address_id") String addressId) {
+       addressService.remove(user, contactId, addressId);
+       return WebResponse.<String>builder().data("OK").build();
+   }
+    @GetMapping(
+            path = "/api/contacts/{contact_id}/addresses",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public WebResponse<List<AddressResponse>> list(User user,
+                                      @PathVariable("contact_id") String contactId) {
+        List<AddressResponse> addressResponses = addressService.list(user, contactId);
+        return WebResponse.<List<AddressResponse>>builder()
+                .data(addressResponses).build();
+    }
+
 }

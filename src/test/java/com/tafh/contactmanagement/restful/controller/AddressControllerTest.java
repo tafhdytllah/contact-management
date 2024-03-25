@@ -22,6 +22,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -258,4 +259,108 @@ class AddressControllerTest {
 
         });
     }
+
+   @Test
+   void removeAddressNotFound() throws Exception {
+
+       mockMvc.perform(
+               delete("/api/contacts/test/addresses/test")
+                       .accept(MediaType.APPLICATION_JSON)
+                       .contentType(MediaType.APPLICATION_JSON)
+                       .header("X-API-TOKEN", "test")
+       ).andExpectAll(
+               status().isNotFound()
+       ).andDo(result -> {
+           WebResponse<String> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<WebResponse<String>>() {
+           });
+
+           assertNotNull(response.getErrors());
+       });
+   }
+
+   @Test
+    void removeAddressSuccess() throws Exception {
+        Contact contact = contactRepository.findById("test").orElseThrow();
+
+        Address address = new Address();
+        address.setId("testaddress");
+        address.setContact(contact);
+        address.setStreet("lama");
+        address.setCity("lama");
+        address.setProvince("lama");
+        address.setCountry("lama");
+        address.setPostalCode("lama");
+        addressRepository.save(address);
+
+        mockMvc.perform(
+                delete("/api/contacts/test/addresses/testaddress")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("X-API-TOKEN", "test")
+        ).andExpectAll(
+                status().isOk()
+        ).andDo(result -> {
+            WebResponse<String> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<WebResponse<String>>() {
+            });
+
+            assertNull(response.getErrors());
+            assertEquals("OK", response.getData());
+
+            assertFalse(addressRepository.existsById("test"));
+
+        });
+    }
+
+
+    @Test
+    void listAddressNotFound() throws Exception {
+
+        mockMvc.perform(
+                get("/api/contacts/tidakada/addresses")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("X-API-TOKEN", "test")
+        ).andExpectAll(
+                status().isNotFound()
+        ).andDo(result -> {
+            WebResponse<String> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<WebResponse<String>>() {
+            });
+
+            assertNotNull(response.getErrors());
+        });
+    }
+
+    @Test
+    void listAddressSuccess() throws Exception {
+        Contact contact = contactRepository.findById("test").orElseThrow();
+
+        Address address = new Address();
+        for (int i = 0; i < 5; i++) {
+            address.setId("testaddress" + i);
+            address.setContact(contact);
+            address.setStreet("lama" + i);
+            address.setCity("lama" + i);
+            address.setProvince("lama" + i);
+            address.setCountry("lama" + i);
+            address.setPostalCode("lama + i");
+            addressRepository.save(address);
+        }
+
+        mockMvc.perform(
+                get("/api/contacts/test/addresses")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("X-API-TOKEN", "test")
+        ).andExpectAll(
+                status().isOk()
+        ).andDo(result -> {
+            WebResponse<List<AddressResponse>> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<WebResponse<List<AddressResponse>>>() {
+            });
+
+            assertNull(response.getErrors());
+            assertEquals(5, response.getData().size());
+
+        });
+    }
+
 }
