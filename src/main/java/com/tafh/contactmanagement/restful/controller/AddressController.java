@@ -22,12 +22,24 @@ public class AddressController {
     )
     public WebResponse<AddressResponse> create(User user,
                                                @RequestBody CreateAddressRequest request,
-                                               @PathVariable String contact_id) {
+                                               @PathVariable("contact_id") String contactId) {
 
-        request.setContactId(contact_id);
+        request.setContactId(contactId);
         AddressResponse addressResponse = addressService.create(user, request);
         return WebResponse.<AddressResponse>builder()
                 .data(addressResponse)
                 .build();
+    }
+
+    @GetMapping(
+            path = "/api/contacts/{contact_id}/addresses/{address_id}",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public WebResponse<AddressResponse> get(User user,
+                                            @PathVariable("contact_id") String contactId,
+                                            @PathVariable("address_id") String addressId) {
+        AddressResponse addressResponse = addressService.get(user, contactId, addressId);
+        return WebResponse.<AddressResponse>builder()
+                .data(addressResponse).build();
     }
 }

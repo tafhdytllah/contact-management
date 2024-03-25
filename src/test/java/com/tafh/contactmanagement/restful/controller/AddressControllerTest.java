@@ -2,6 +2,7 @@ package com.tafh.contactmanagement.restful.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tafh.contactmanagement.restful.entity.Address;
 import com.tafh.contactmanagement.restful.entity.Contact;
 import com.tafh.contactmanagement.restful.entity.User;
 import com.tafh.contactmanagement.restful.model.AddressResponse;
@@ -119,5 +120,60 @@ class AddressControllerTest {
 
             assertTrue(addressRepository.existsById(response.getData().getId()));
         });
+    }
+
+    @Test
+    void getAddressNotFound() throws Exception {
+
+        mockMvc.perform(
+                get("/api/contacts/contactIdSalah/addresses/addressIdSalah")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("X-API-TOKEN", "test")
+        ).andExpectAll(
+                status().isNotFound()
+        ).andDo(result -> {
+            WebResponse<String> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<WebResponse<String>>() {
+            });
+
+            assertNotNull(response.getErrors());
+        });
+    }
+
+    @Test
+    void getAddressSuccess() throws Exception {
+
+        Contact contact = contactRepository.findById("test").orElseThrow();
+
+        Address address = new Address();
+        address.setId("testaddress");
+        address.setStreet("Basmol");
+        address.setCity("Jakbar");
+        address.setProvince("Jakarta");
+        address.setCountry("Indonesia");
+        address.setPostalCode("12345");
+        address.setContact(contact);
+        addressRepository.save(address);
+
+        mockMvc.perform(
+                get("/api/contacts/test/addresses/testaddress")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("X-API-TOKEN", "test")
+        ).andExpectAll(
+                status().isOk()
+        ).andDo(result -> {
+            WebResponse<AddressResponse> response = objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<WebResponse<AddressResponse>>() {
+            });
+
+            assertNull(response.getErrors());
+            assertEquals(address.getId(), response.getData().getId());
+            assertEquals(address.getStreet(), response.getData().getStreet());
+            assertEquals(address.getCity(), response.getData().getCity());
+            assertEquals(address.getProvince(), response.getData().getProvince());
+            assertEquals(address.getCountry(), response.getData().getCountry());
+            assertEquals(address.getPostalCode(), response.getData().getPostalCode());
+        });
+
     }
 }
