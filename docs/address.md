@@ -2,7 +2,7 @@
 
 ## Create Address
 
-- Endpoint : POST /api/contacts/{contactId}/addresses
+- Endpoint : POST /api/contacts/{contact_id}/addresses
 
 Request Header :
 - X-API-TOKEN : Token (mandatory)
@@ -60,7 +60,7 @@ Response Body (Failed) 401 :
 
 ## Get Address
 
-- Endpoint : GET /api/contacts/{contactId}/addresses/{id_address}
+- Endpoint : GET /api/contacts/{contact_id}/addresses/{address_id}
 
 Request Header :
 - X-API-TOKEN : Token (mandatory)
@@ -106,7 +106,7 @@ Response Body (Failed) 401 :
 
 ## Update Address
 
-- Endpoint : PUT /api/contacts/{contactId}/addresses/{id_address}
+- Endpoint : PUT /api/contacts/{contact_id}/addresses/{address_id}
 
 Request Header :
 - X-API-TOKEN : Token (mandatory)
@@ -172,7 +172,7 @@ Response Body (Failed) 401 :
 
 ## Remove Address
 
-- Endpoint : DELETE /api/contacts/{contactId}/addresses/{id_address}
+- Endpoint : DELETE /api/contacts/{contact_id}/addresses/{address_id}
 
 Request Header :
 - X-API-TOKEN : Token (mandatory)
@@ -211,7 +211,7 @@ Response Body (Failed) 401 :
 
 ## List Address
 
-- Endpoint : GET /api/contacts/{contactId}/addresses
+- Endpoint : GET /api/contacts/{contact_id}/addresses
 
 Request Header :
 - X-API-TOKEN : Token (mandatory)

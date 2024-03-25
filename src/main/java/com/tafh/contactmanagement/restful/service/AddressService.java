@@ -5,6 +5,8 @@ import com.tafh.contactmanagement.restful.entity.Contact;
 import com.tafh.contactmanagement.restful.entity.User;
 import com.tafh.contactmanagement.restful.model.AddressResponse;
 import com.tafh.contactmanagement.restful.model.CreateAddressRequest;
+import com.tafh.contactmanagement.restful.model.UpdateAddressRequest;
+import com.tafh.contactmanagement.restful.model.WebResponse;
 import com.tafh.contactmanagement.restful.repository.AddressRepository;
 import com.tafh.contactmanagement.restful.repository.ContactRepository;
 import com.tafh.contactmanagement.restful.repository.UserRepository;
@@ -12,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.UUID;
@@ -58,6 +62,26 @@ public class AddressService {
 
         Address address = addressRepository.findFirstByContactAndId(contact, addressId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Address is not found"));
+
+        return toAddressResponse(address);
+    }
+
+    @Transactional
+    public AddressResponse update(User user, UpdateAddressRequest request) {
+        validationService.validate(request);
+
+        Contact contact = contactRepository.findFirstByUserAndId(user, request.getContactId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Contact is not found"));
+
+        Address address = addressRepository.findFirstByContactAndId(contact, request.getAddressId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Address is not found"));
+
+        address.setStreet(request.getStreet());
+        address.setCity(request.getCity());
+        address.setProvince(request.getProvince());
+        address.setCountry(request.getCountry());
+        address.setPostalCode(request.getPostalCode());
+        addressRepository.save(address);
 
         return toAddressResponse(address);
     }

@@ -3,6 +3,7 @@ package com.tafh.contactmanagement.restful.controller;
 import com.tafh.contactmanagement.restful.entity.User;
 import com.tafh.contactmanagement.restful.model.AddressResponse;
 import com.tafh.contactmanagement.restful.model.CreateAddressRequest;
+import com.tafh.contactmanagement.restful.model.UpdateAddressRequest;
 import com.tafh.contactmanagement.restful.model.WebResponse;
 import com.tafh.contactmanagement.restful.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,5 +42,22 @@ public class AddressController {
         AddressResponse addressResponse = addressService.get(user, contactId, addressId);
         return WebResponse.<AddressResponse>builder()
                 .data(addressResponse).build();
+    }
+
+    @PutMapping(
+            path = "/api/contacts/{contact_id}/addresses/{address_id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public WebResponse<AddressResponse> update(User user,
+                                               @RequestBody UpdateAddressRequest request,
+                                               @PathVariable("contact_id") String contactId,
+                                               @PathVariable("address_id") String addressId) {
+        request.setAddressId(addressId);
+        request.setContactId(contactId);
+
+        AddressResponse response = addressService.update(user, request);
+
+        return WebResponse.<AddressResponse>builder().data(response).build();
     }
 }
