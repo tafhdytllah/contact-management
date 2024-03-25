@@ -28,23 +28,23 @@ public class ContactController {
     }
 
     @GetMapping(
-            path = "/api/contacts/{id_contact}",
+            path = "/api/contacts/{contact_id}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    private WebResponse<ContactResponse> get(User user, @PathVariable("id_contact") String idContact) {
-        ContactResponse response = contactService.get(user, idContact);
+    private WebResponse<ContactResponse> get(User user, @PathVariable("contact_id") String contactId) {
+        ContactResponse response = contactService.get(user, contactId);
         return WebResponse.<ContactResponse>builder().data(response).build();
     }
 
     @PutMapping(
-            path = "/api/contacts/{id_contact}",
+            path = "/api/contacts/{contact_id}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     private WebResponse<ContactResponse> update(User user,
                                                 @RequestBody UpdateContactRequest request,
-                                                @PathVariable("id_contact") String idContact) {
-        request.setId(idContact);
+                                                @PathVariable("contact_id") String contactId) {
+        request.setId(contactId);
 
         ContactResponse contactResponse = contactService.update(user, request);
 
@@ -52,11 +52,11 @@ public class ContactController {
     }
 
     @DeleteMapping(
-            path = "/api/contacts/{id_contact}",
+            path = "/api/contacts/{contact_id}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    private WebResponse<String> delete(User user, @PathVariable("id_contact") String idContact) {
-        contactService.delete(user, idContact);
+    private WebResponse<String> delete(User user, @PathVariable("contact_id") String contactId) {
+        contactService.delete(user, contactId);
 
         return WebResponse.<String>builder().data("OK").build();
     }
