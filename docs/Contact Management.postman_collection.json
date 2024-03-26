@@ -1,0 +1,1600 @@
+{
+	"info": {
+		"_postman_id": "9ab4e40c-f27c-4d9b-b617-1360ec36fc91",
+		"name": "Contact Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10622912"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Tester\",\r\n    \"username\" : \"test\",\r\n    \"password\" : \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"tafh dytllah\",\r\n    \"username\" : \"tafh@gmail.com\",\r\n    \"password\" : \"secretpassword123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 25 Mar 2024 15:11:40 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": \"OK\",\n    \"errors\": null,\n    \"paging\": null\n}"
+				},
+				{
+					"name": "400",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"tafh dytllah\",\r\n    \"username\" : \"\",\r\n    \"password\" : \"secretpassword123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 25 Mar 2024 15:12:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": null,\n    \"errors\": \"username: must not be blank\",\n    \"paging\": null\n}"
+				},
+				{
+					"name": "400",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"tafh dytllah\",\r\n    \"username\" : \"test\",\r\n    \"password\" : \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 25 Mar 2024 15:13:03 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": null,\n    \"errors\": \"password: must not be blank\",\n    \"paging\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"test\",\r\n    \"password\": \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test\",\r\n    \"password\": \"test123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 25 Mar 2024 15:17:03 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"token\": \"7a4c1b4d-9e29-4a4e-ba0c-04be4f2a844c\",\n        \"expired_at\": 1709676856603\n    },\n    \"errors\": null,\n    \"paging\": null\n}"
+				},
+				{
+					"name": "400",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"\",\r\n    \"password\": \"test123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 25 Mar 2024 15:17:22 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": null,\n    \"errors\": \"username: must not be blank\",\n    \"paging\": null\n}"
+				},
+				{
+					"name": "400",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 25 Mar 2024 15:17:38 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": null,\n    \"errors\": \"password: must not be blank\",\n    \"paging\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "f2df90ec-4e59-4f24-a6a4-df6f9fdd185f",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/users/current",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"current"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-TOKEN",
+								"value": "c74b404f-7375-47cd-84bf-0d5bfac3e987",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/users/current",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"current"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Mar 2024 09:20:25 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"username\": \"test\",\n        \"name\": \"Tester\"\n    },\n    \"errors\": null,\n    \"paging\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "f2df90ec-4e59-4f24-a6a4-df6f9fdd185f",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"top oke\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/users/current",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"users",
+						"current"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "X-API-TOKEN",
+								"value": "f2df90ec-4e59-4f24-a6a4-df6f9fdd185f",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"top oke\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/current",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"current"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Mar 2024 09:30:25 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"username\": \"test\",\n        \"name\": \"top oke\"\n    },\n    \"errors\": null,\n    \"paging\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "709df45e-a833-4c3b-88b3-8e40f6e3ed37",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/auth/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-API-TOKEN",
+								"value": "709df45e-a833-4c3b-88b3-8e40f6e3ed37",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/auth/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Mar 2024 09:48:38 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": \"OK\",\n    \"errors\": null,\n    \"paging\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Contact",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "709df45e-a833-4c3b-88b3-8e40f6e3ed37",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\" : \"test11\",\r\n    \"last_name\" : \"test last\",\r\n    \"email\" : \"top@gmail.com\",\r\n    \"phone\" : \"08171717171\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/contacts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"contacts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-API-TOKEN",
+								"value": "709df45e-a833-4c3b-88b3-8e40f6e3ed37",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\" : \"test first\",\r\n    \"last_name\" : \"test last\",\r\n    \"email\" : \"testemail@gmail.com\",\r\n    \"phone\" : \"08171717171\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/contacts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"contacts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Mar 2024 09:33:11 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": \"ec918d35-26e4-40db-bfe2-a5edef90832b\",\n        \"firstName\": \"test first\",\n        \"lastName\": \"test last\",\n        \"email\": \"testemail@gmail.com\",\n        \"phone\": \"08171717171\"\n    },\n    \"errors\": null,\n    \"paging\": null\n}"
+				},
+				{
+					"name": "400",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-API-TOKEN",
+								"value": "709df45e-a833-4c3b-88b3-8e40f6e3ed37",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\" : \"\",\r\n    \"last_name\" : \"test last\",\r\n    \"email\" : \"testemail@gmail.com\",\r\n    \"phone\" : \"08171717171\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/contacts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"contacts"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Mar 2024 09:33:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": null,\n    \"errors\": \"firstName: must not be blank\",\n    \"paging\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Contact",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "bf60fa93-50f2-44fc-a52c-5d476810e204",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/contacts/25ef93dd-3c1c-4f4f-9513-fc30352f3b36",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"contacts",
+						"25ef93dd-3c1c-4f4f-9513-fc30352f3b36"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-TOKEN",
+								"value": "709df45e-a833-4c3b-88b3-8e40f6e3ed37",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/contacts/092adee7-8db6-4612-9772-6c789ac83dd4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"contacts",
+								"092adee7-8db6-4612-9772-6c789ac83dd4"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Mar 2024 09:42:32 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": \"092adee7-8db6-4612-9772-6c789ac83dd4\",\n        \"firstName\": \"test11\",\n        \"lastName\": \"test last\",\n        \"email\": \"testemail@gmail.com\",\n        \"phone\": \"08171717171\"\n    },\n    \"errors\": null,\n    \"paging\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Search Contact",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "bf60fa93-50f2-44fc-a52c-5d476810e204",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/contacts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"contacts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-TOKEN",
+								"value": "709df45e-a833-4c3b-88b3-8e40f6e3ed37",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/contacts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"contacts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Mar 2024 09:41:12 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": \"092adee7-8db6-4612-9772-6c789ac83dd4\",\n            \"firstName\": \"test11\",\n            \"lastName\": \"test last\",\n            \"email\": \"testemail@gmail.com\",\n            \"phone\": \"08171717171\"\n        },\n        {\n            \"id\": \"25ef93dd-3c1c-4f4f-9513-fc30352f3b36\",\n            \"firstName\": \"test11\",\n            \"lastName\": \"test last\",\n            \"email\": \"top@gmail.com\",\n            \"phone\": \"08171717171\"\n        },\n        {\n            \"id\": \"2a6b9b45-c40a-43d2-99bd-5f3614cfb115\",\n            \"firstName\": \"test2\",\n            \"lastName\": \"test last\",\n            \"email\": \"testemail@gmail.com\",\n            \"phone\": \"08171717171\"\n        },\n        {\n            \"id\": \"429dbc22-3a2f-41ce-908e-1fb87ad2c877\",\n            \"firstName\": \"test3\",\n            \"lastName\": \"test last\",\n            \"email\": \"testemail@gmail.com\",\n            \"phone\": \"08171717171\"\n        },\n        {\n            \"id\": \"5edbec19-c14a-40c5-b95d-2d08e5efb220\",\n            \"firstName\": \"test9\",\n            \"lastName\": \"test last\",\n            \"email\": \"testemail@gmail.com\",\n            \"phone\": \"08171717171\"\n        },\n        {\n            \"id\": \"7c2f6b96-dcad-4529-b98f-387031bf582d\",\n            \"firstName\": \"test6\",\n            \"lastName\": \"test last\",\n            \"email\": \"testemail@gmail.com\",\n            \"phone\": \"08171717171\"\n        },\n        {\n            \"id\": \"837a6bee-405e-4bdc-9f64-d4260fb68be2\",\n            \"firstName\": \"test7\",\n            \"lastName\": \"test last\",\n            \"email\": \"testemail@gmail.com\",\n            \"phone\": \"08171717171\"\n        },\n        {\n            \"id\": \"83ed3b3c-af7a-4292-be0c-f47f2c6eaf9a\",\n            \"firstName\": \"test8\",\n            \"lastName\": \"test last\",\n            \"email\": \"testemail@gmail.com\",\n            \"phone\": \"08171717171\"\n        },\n        {\n            \"id\": \"bb0a9846-151b-40d4-92b2-c2a6c94a00a1\",\n            \"firstName\": \"test5\",\n            \"lastName\": \"test last\",\n            \"email\": \"testemail@gmail.com\",\n            \"phone\": \"08171717171\"\n        },\n        {\n            \"id\": \"dead58da-0e33-49e1-a239-6cfae077cec9\",\n            \"firstName\": \"test10\",\n            \"lastName\": \"test last\",\n            \"email\": \"testemail@gmail.com\",\n            \"phone\": \"08171717171\"\n        }\n    ],\n    \"errors\": null,\n    \"paging\": {\n        \"size\": 10,\n        \"current_page\": 0,\n        \"total_page\": 2\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Contact",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "709df45e-a833-4c3b-88b3-8e40f6e3ed37",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\" : \"lany\",\r\n    \"last_name\" : \"kuncir\",\r\n    \"email\" : \"toto@gmail.com\",\r\n    \"phone\" : \"0000000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/contacts/092adee7-8db6-4612-9772-6c789ac83dd4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"contacts",
+						"092adee7-8db6-4612-9772-6c789ac83dd4"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-API-TOKEN",
+								"value": "709df45e-a833-4c3b-88b3-8e40f6e3ed37",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\" : \"lany\",\r\n    \"last_name\" : \"kuncir\",\r\n    \"email\" : \"toto@gmail.com\",\r\n    \"phone\" : \"0000000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/contacts/092adee7-8db6-4612-9772-6c789ac83dd4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"contacts",
+								"092adee7-8db6-4612-9772-6c789ac83dd4"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Mar 2024 09:44:53 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": \"092adee7-8db6-4612-9772-6c789ac83dd4\",\n        \"firstName\": \"lany\",\n        \"lastName\": \"kuncir\",\n        \"email\": \"toto@gmail.com\",\n        \"phone\": \"0000000\"\n    },\n    \"errors\": null,\n    \"paging\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Remove Contact",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "709df45e-a833-4c3b-88b3-8e40f6e3ed37",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/contacts/092adee7-8db6-4612-9772-6c789ac83dd4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"contacts",
+						"092adee7-8db6-4612-9772-6c789ac83dd4"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-API-TOKEN",
+								"value": "709df45e-a833-4c3b-88b3-8e40f6e3ed37",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/contacts/092adee7-8db6-4612-9772-6c789ac83dd4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"contacts",
+								"092adee7-8db6-4612-9772-6c789ac83dd4"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Mar 2024 09:46:14 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": \"OK\",\n    \"errors\": null,\n    \"paging\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Address",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "bf60fa93-50f2-44fc-a52c-5d476810e204",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"street\" : \"jl apapun 2\",\r\n    \"city\" : \"Kota\",\r\n    \"province\" : \"provinsi\",\r\n    \"country\" : \"negara\",\r\n    \"postalCode\" : \"12321\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/contacts/25ef93dd-3c1c-4f4f-9513-fc30352f3b36/addresses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"contacts",
+						"25ef93dd-3c1c-4f4f-9513-fc30352f3b36",
+						"addresses"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-API-TOKEN",
+								"value": "bf60fa93-50f2-44fc-a52c-5d476810e204",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"street\" : \"jl apapun\",\r\n    \"city\" : \"Kota\",\r\n    \"province\" : \"provinsi\",\r\n    \"country\" : \"negara\",\r\n    \"postalCode\" : \"12321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/contacts/25ef93dd-3c1c-4f4f-9513-fc30352f3b36/addresses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"contacts",
+								"25ef93dd-3c1c-4f4f-9513-fc30352f3b36",
+								"addresses"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Mar 2024 09:53:26 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": \"baf603b9-66a7-4991-a476-0c320a283064\",\n        \"street\": \"jl apapun\",\n        \"city\": \"Kota\",\n        \"country\": \"negara\",\n        \"province\": \"provinsi\",\n        \"postal_code\": null\n    },\n    \"errors\": null,\n    \"paging\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Address",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "bf60fa93-50f2-44fc-a52c-5d476810e204",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/contacts/25ef93dd-3c1c-4f4f-9513-fc30352f3b36/addresses/baf603b9-66a7-4991-a476-0c320a283064",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"contacts",
+						"25ef93dd-3c1c-4f4f-9513-fc30352f3b36",
+						"addresses",
+						"baf603b9-66a7-4991-a476-0c320a283064"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-TOKEN",
+								"value": "bf60fa93-50f2-44fc-a52c-5d476810e204",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/contacts/25ef93dd-3c1c-4f4f-9513-fc30352f3b36/addresses/baf603b9-66a7-4991-a476-0c320a283064",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"contacts",
+								"25ef93dd-3c1c-4f4f-9513-fc30352f3b36",
+								"addresses",
+								"baf603b9-66a7-4991-a476-0c320a283064"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Mar 2024 09:54:40 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": \"baf603b9-66a7-4991-a476-0c320a283064\",\n        \"street\": \"jl apapun\",\n        \"city\": \"Kota\",\n        \"country\": \"negara\",\n        \"province\": \"provinsi\",\n        \"postal_code\": null\n    },\n    \"errors\": null,\n    \"paging\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Address",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "bf60fa93-50f2-44fc-a52c-5d476810e204",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"street\" : \"jl apapun tes\",\r\n    \"city\" : \"Kota tes\",\r\n    \"province\" : \"provinsi tes\",\r\n    \"country\" : \"negara tes\",\r\n    \"postalCode\" : \"12321 tes\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/contacts/25ef93dd-3c1c-4f4f-9513-fc30352f3b36/addresses/baf603b9-66a7-4991-a476-0c320a283064",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"contacts",
+						"25ef93dd-3c1c-4f4f-9513-fc30352f3b36",
+						"addresses",
+						"baf603b9-66a7-4991-a476-0c320a283064"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-API-TOKEN",
+								"value": "bf60fa93-50f2-44fc-a52c-5d476810e204",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"street\" : \"jl apapun tes\",\r\n    \"city\" : \"Kota tes\",\r\n    \"province\" : \"provinsi tes\",\r\n    \"country\" : \"negara tes\",\r\n    \"postalCode\" : \"12321 tes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/contacts/25ef93dd-3c1c-4f4f-9513-fc30352f3b36/addresses/baf603b9-66a7-4991-a476-0c320a283064",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"contacts",
+								"25ef93dd-3c1c-4f4f-9513-fc30352f3b36",
+								"addresses",
+								"baf603b9-66a7-4991-a476-0c320a283064"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Mar 2024 09:57:14 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": \"baf603b9-66a7-4991-a476-0c320a283064\",\n        \"street\": \"jl apapun tes\",\n        \"city\": \"Kota tes\",\n        \"country\": \"negara tes\",\n        \"province\": \"provinsi tes\",\n        \"postal_code\": null\n    },\n    \"errors\": null,\n    \"paging\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "List Address",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "72e9d9d3-faa8-4153-97f3-920f5ab6ecb4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/contacts/25ef93dd-3c1c-4f4f-9513-fc30352f3b36/addresses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"contacts",
+						"25ef93dd-3c1c-4f4f-9513-fc30352f3b36",
+						"addresses"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-API-TOKEN",
+								"value": "bf60fa93-50f2-44fc-a52c-5d476810e204",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/contacts/25ef93dd-3c1c-4f4f-9513-fc30352f3b36/addresses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"contacts",
+								"25ef93dd-3c1c-4f4f-9513-fc30352f3b36",
+								"addresses"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Mar 2024 10:00:03 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": \"baf603b9-66a7-4991-a476-0c320a283064\",\n            \"street\": \"jl apapun tes\",\n            \"city\": \"Kota tes\",\n            \"country\": \"negara tes\",\n            \"province\": \"provinsi tes\",\n            \"postal_code\": null\n        },\n        {\n            \"id\": \"beefd0a2-6c10-4f4a-bf23-1422e1035629\",\n            \"street\": \"jl apapun 2\",\n            \"city\": \"Kota\",\n            \"country\": \"negara\",\n            \"province\": \"provinsi\",\n            \"postal_code\": null\n        }\n    ],\n    \"errors\": null,\n    \"paging\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "RemoveAddress",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "X-API-TOKEN",
+						"value": "72e9d9d3-faa8-4153-97f3-920f5ab6ecb4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/api/contacts/25ef93dd-3c1c-4f4f-9513-fc30352f3b36/addresses/baf603b9-66a7-4991-a476-0c320a283064",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"contacts",
+						"25ef93dd-3c1c-4f4f-9513-fc30352f3b36",
+						"addresses",
+						"baf603b9-66a7-4991-a476-0c320a283064"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-API-TOKEN",
+								"value": "72e9d9d3-faa8-4153-97f3-920f5ab6ecb4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/contacts/25ef93dd-3c1c-4f4f-9513-fc30352f3b36/addresses/baf603b9-66a7-4991-a476-0c320a283064",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"contacts",
+								"25ef93dd-3c1c-4f4f-9513-fc30352f3b36",
+								"addresses",
+								"baf603b9-66a7-4991-a476-0c320a283064"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 26 Mar 2024 13:21:04 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": \"OK\",\n    \"errors\": null,\n    \"paging\": null\n}"
+				}
+			]
+		}
+	]
+}
