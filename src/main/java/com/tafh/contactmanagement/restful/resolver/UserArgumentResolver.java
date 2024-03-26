@@ -38,11 +38,14 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
         User user = userRepository.findFirstByToken(token)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Unauthorized"));
 
-        log.info("USER {}", user);
-        if (user.getTokenExpiredAt() < System.currentTimeMillis()) {
+        if (isTokenExpired(user.getTokenExpiredAt())) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Expired token");
         }
 
         return user;
+    }
+
+    public static boolean isTokenExpired(long expirationTimeMillis) {
+        return System.currentTimeMillis() > expirationTimeMillis;
     }
 }

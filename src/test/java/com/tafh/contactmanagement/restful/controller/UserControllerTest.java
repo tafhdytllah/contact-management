@@ -190,7 +190,7 @@ class UserControllerTest {
     }
 
     @Test
-    void updateuserUnauthorized() throws Exception {
+    void updateUserUnauthorized() throws Exception {
         UpdateUserRequest request = new UpdateUserRequest();
 
         mockMvc.perform(
@@ -210,7 +210,7 @@ class UserControllerTest {
 
 
     @Test
-    void updateuserSuccess() throws Exception {
+    void updateUserSuccess() throws Exception {
         User user = new User();
         user.setUsername("test");
         user.setPassword(BCrypt.hashpw("rahasia", BCrypt.gensalt()));
