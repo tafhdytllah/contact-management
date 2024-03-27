@@ -41,4 +41,4 @@ Before getting started, ensure your system meets the following requirements:
 
 ### Contact
 
-If you have any questions or comments about this project, please feel free to contact us at [gmail](mailto:taufikhh.97@gmail.cojm).
+If you have any questions or comments about this project, please feel free to contact us at [gmail](mailto:taufikhh.97@gmail.com).
