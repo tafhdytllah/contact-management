@@ -6,6 +6,8 @@ import com.tafh.contactmanagement.restful.entity.User;
 import com.tafh.contactmanagement.restful.model.LoginUserRequest;
 import com.tafh.contactmanagement.restful.model.TokenResponse;
 import com.tafh.contactmanagement.restful.model.WebResponse;
+import com.tafh.contactmanagement.restful.repository.AddressRepository;
+import com.tafh.contactmanagement.restful.repository.ContactRepository;
 import com.tafh.contactmanagement.restful.repository.UserRepository;
 import com.tafh.contactmanagement.restful.security.BCrypt;
 import org.junit.jupiter.api.BeforeEach;
@@ -35,10 +37,18 @@ class AuthControllerTest {
     private UserRepository userRepository;
 
     @Autowired
+    private ContactRepository contactRepository;
+
+    @Autowired
+    private AddressRepository addressRepository;
+
+    @Autowired
     private ObjectMapper objectMapper;
 
     @BeforeEach
     void setUp() {
+        addressRepository.deleteAll();
+        contactRepository.deleteAll();
         userRepository.deleteAll();
     }
 

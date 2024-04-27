@@ -8,6 +8,7 @@ import com.tafh.contactmanagement.restful.model.ContactResponse;
 import com.tafh.contactmanagement.restful.model.CreateContactRequest;
 import com.tafh.contactmanagement.restful.model.UpdateContactRequest;
 import com.tafh.contactmanagement.restful.model.WebResponse;
+import com.tafh.contactmanagement.restful.repository.AddressRepository;
 import com.tafh.contactmanagement.restful.repository.ContactRepository;
 import com.tafh.contactmanagement.restful.repository.UserRepository;
 import com.tafh.contactmanagement.restful.security.BCrypt;
@@ -42,10 +43,14 @@ class ContactControllerTest {
     private ContactRepository contactRepository;
 
     @Autowired
+    private AddressRepository addressRepository;
+
+    @Autowired
     private ObjectMapper objectMapper;
 
     @BeforeEach
     void setUp() {
+        addressRepository.deleteAll();
         contactRepository.deleteAll();
         userRepository.deleteAll();
 
